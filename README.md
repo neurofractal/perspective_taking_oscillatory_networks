@@ -29,69 +29,101 @@ This boxplot to shows participant’s mean reaction time (RT) in milliseconds fo
 
 As in Kessler & Rutherford (2010) performance in the LR-hard condition was accompanied by significantly longer reaction time (RT) compared with all other experimental conditions.
 
+## MEG Data
+
+Each subject's MEG data was saved in 3 separate blocks as follows:
+
+>rs_asd_*subjectname*_pers_*blocknumber*
 
 ## Maxfilter
 
-'''Matlab
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Function to Maxfilter all .fif files in a directory
-% Use as maxfilter_all('path_to_directory')
-% Make sure there are no Maxfiltered datasets in your directory.
-% This script will estimate head position and apply tSSS with a .9
-% correlation. Can be changed if necessary.
-% Head position is subsequently visualised using a script obtained from the
-% MRC MEG team at Cambridge.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+All MEG data were pre-processed using Maxfilter (temporal signal space separation, .96 correlation), which supresses external sources of noise from outside the head (Taulu & Simola, 2006). To compensate for head movement between runs, data from runs 2 and 3 were transformed to participant’s head position at the start of the first block using the –trans option of Maxfilter.
 
-function maxfilter_all(directory)
+This was performed using the following Matlab script.
 
-% Specify current directory & find all .fif files
+
+```Matlab
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Function to Maxfilter all rs_asd_XXX_persX.fif files in a directory 
+%
+% Use as maxfilter_all_RS('path_to_directory')
+% Make sure there are no Maxfiltered datasets in your directory alread.
+%
+% This script will to the following things (and may take a while!):
+%
+% 1. Applies tSSS .96 correlation to ...pers1.fif data
+% 2. Applies tSSS .96 correlation and -trans to ...pers2/3.fif data
+% 3. Visualises PS movement using a script from Cambridge MRC Unit
+%
+% These are currently the best Maxfilter parameters for the data (although
+% this could change!)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function maxfilter_all_RS(directory)
+
+
+%% Specify current directory
 cd(directory)
 
-% Put files into arry but ignore any fif files already undergone tSSS
-dir_list = dir('**.fif');
-files = [];
+%% Put persX.fif into array but ignore any fif files already undergone tSSS
+dir_list = dir('**pers*.fif');
+pers_files = [];
 p = 1;
 for i=1:length(dir_list)
     matches = strfind(dir_list(i).name,'tsss');
     if isempty(matches) == 1
-        files{p} = dir_list(i).name;
+        pers_files{p} = dir_list(i).name;
         p = p+1;
     end
 end
 
-disp(files)
+disp(pers_files)
 
-clear p
+%% Apply tSSS + movt estimation to data from the first run
+% Here I'm applying ctc, cal, tSSS 30s buffer, corr limit 0.96, saving head
+% pos output in a log file, and subtracting HPI coil noise
 
-% This script outputs 2 log files:
-% 1) head_pos_output_filename.log = headposition
-% 2) output_log_filename.log = overall log file which can be read into
-% Cambridge headmovt script
-
-for i=1:length(files)
-    ddd = (sprintf('maxfilter -f ctc /neuro/databases/ctc/ct_sparse.fif -cal /neuro/databases/sss/sss_cal.dat %s -v -force -st -corr 0.9 -headpos -hp headpos_output_%s.log | tee output_log_%s.log', ([cd '/' files{i}]), files{i},files{i}))
-    disp(sprintf('About to Maxfilter dataset %s using tSSS & 0.9 correlation PLUS estimating head position',files{i}))
+for i=1
+    ddd = (sprintf('maxfilter -f %s -bad 0111 2542 0532 0613 -ctc /neuro/databases/ctc/ct_sparse.fif -cal /neuro/databases/sss/sss_cal.dat -v -force -st 30 -corr 0.96 -headpos -hp headpos_output_%s.log -hpisubt amp | tee output_log_%s.log',[cd '/' pers_files{1}],pers_files{1},pers_files{1}))
+    disp(sprintf('About to process FIRST PERSPECTIVE TAKING DATSET %s using Maxfilter tSSS .9 correlation',pers_files{1}))
     system(ddd)
     clear ddd
     system(ls)
 end
 
-%% Visualising movement
+%% Here I am applying tSSS to data from runs 2 & 3, but also transforming data to the starting position of run 1
 
-% uses check_movecomp to read and display maxfilter -headpos output
-% Files with maxfilter outputs, e.g. for different subjects and conditions
-% See http://imaging.mrc-cbu.cam.ac.uk/meg/maxdiagnost
-movecompfiles = {};
-for i =1:length(files)
-    movecompfiles{i} = sprintf('output_log_%s.log', files{i})
+for i= [2 3]
+    ddd = (sprintf('maxfilter -f %s -bad 0111 2542 0532 0613 -ctc /neuro/databases/ctc/ct_sparse.fif -cal /neuro/databases/sss/sss_cal.dat -v -force -st 30 -corr 0.9 -trans %s -hpisubt amp',[cd '/' pers_files{i}],[cd '/' pers_files{1}]))
+    disp(sprintf('About to transform PERSPECTIVE TAKING DATSET %s using Maxfilter & tSSS .9 correlation',pers_files{i}))
+    system(ddd)
+    clear ddd
+    system(ls)
 end
-nr_files = length(movecompfiles);
 
-for ff = 1:nr_files,
-    fprintf(1, 'Processing %s\n', movecompfiles{ff});
-    [mv_fig, linet, linee, lineg, linev, liner, lined] = check_movecomp(movecompfiles{ff}); % read info from log-file
-    [a,b,c] = fileparts(movecompfiles{ff} );
+%% Log head movements for runs 2 & 3
+
+for i= [2 3]
+    ddd = (sprintf('maxfilter -f %s -bad 0111 2542 0532 0613 -force -v -headpos -hp headpos_output_%s.log | tee output_log_%s.log',[cd '/' pers_files{i}],pers_files{i},pers_files{i}))
+    disp(sprintf('About to transform PERSPECTIVE TAKING DATSET %s using Maxfilter & tSSS .96 correlation',pers_files{i}))
+    system(ddd)
+    clear ddd
+    system(ls)
+end
+
+%% Visualising Movement
+
+movecomppers_files = {};
+for i =1:length(pers_files)
+    movecomppers_files{i} = sprintf('output_log_%s.log', pers_files{i})
+end
+nr_pers_files = length(movecomppers_files);
+
+for ff = 1:nr_pers_files
+    addpath('/studies/201601-108/scripts/maxfilter'); %only relevant for my computer
+    fprintf(1, 'Processing %s\n', movecomppers_files{ff});
+    [mv_fig, linet, linee, lineg, linev, liner, lined] = check_movecomp(movecomppers_files{ff}); % read info from log-file
+    [a,b,c] = fileparts(movecomppers_files{ff} );
     tittxt = [b]; % just one way to keep the figure title short
     figure( mv_fig );
     % check_movecomp only creates the figure, but without the title, so you can do this separately
@@ -99,7 +131,9 @@ for ff = 1:nr_files,
     saveas(gcf,sprintf('%s_movement.png',b))
 end
 
+
 end
-'''
+```
+(Dependencies: MATLAB, Maxfilter 2.2, [check_movecomp.m](http://imaging.mrc-cbu.cam.ac.uk/meg/maxdiagnost))
 
 ## Preprocessing
