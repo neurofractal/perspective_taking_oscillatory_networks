@@ -4,6 +4,8 @@
 
 **(Seymour, Gooding-Williams, Wang, Rippon & Kessler., *in prep*)**
 
+Repository maintained by [Robert Seymour](http://robertseymour.me).
+
 ## Paradigm
 
 ![Imgur](http://i.imgur.com/qC0zeor.jpg)
