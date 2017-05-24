@@ -351,15 +351,19 @@ end
 
 All subsequent analysis was performed in Matlab 2014b using the open-source Fieldtrip toolbox (Oostenveld, Fries, Maris, & Schoffelen, 2010), and customised Matlab scripts. 
 
-For preprocessing:
+The following preprocessing steps were applied to all datasets:
 
 1. Load in data to Fieldtrip
-2.  Apply appropriate filters
+2. Apply appropriate filters
 3. Epoch based on specific trigger
 4. Artefact Rejection
 5. Save and repeat for data from runs 1-3
 
-6. 
+6. Concatenate data
+7. Run FASTICA algorithm, detect ECG & EOG artefacts, remove from data
+8. Save data_clean.mat
+
+Script: preprocessing_elektra_FT_perspective_taking_pilot.m
 
 ```matlab
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
