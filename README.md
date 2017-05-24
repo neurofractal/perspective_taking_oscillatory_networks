@@ -17,8 +17,217 @@ There were therefore 4 conditions:
 >4.  Visible/occluded judgments where the avatar is 60&deg; from own perspective **(VO-easy)**
 
 ## Behavioural Analysis
-All behavioural data was first extracted from ePrime log files and concatenated into one CSV file. Participant reaction times were then analysed using the script below.
 
+All behavioural data was first extracted from ePrime log files and concatenated into one CSV file. Participant reaction times were then extracted and analysed using the following Python script below.
+```matlab
+"""
+Script to analyse the behavioural output of the perspective taking task. 
+
+It requires a CSV file in which all eprime data has been merged and pasted 
+into the same array. 
+
+Please note that ASD participant information is missing the 0 from the front
+"""
+
+## Import required variables
+import csv
+import numpy as np
+from matplotlib import pyplot as plt;
+
+## Location of CSV files
+#csvfile = 'location_of_csv.csv'
+
+output = [];
+
+## Deliniarate the csv file
+with open(csvfile) as f:
+    for line in f:
+        cells = line.split( "," )
+        output.append( ( cells[ : ]) )
+    
+## Participant List
+participant_list = sorted(['2','4','7','8','9','10','11','13','14','15','17','19','18','20','21','22','24','25'])
+
+## LR_hard condition
+
+RT_LR_hard = [[] for x in xrange(len(participant_list))]
+
+# For every participant...          
+for p in range(0,len((participant_list)),1):
+    # Iterate through list looking for matching condition
+    for n in range(1,(len(output)),1):
+        if output[n][1] == participant_list[p] and output[n][32] == '1' and output[n][23] == 'vpt2proc' and output[n][30] == '160':
+            # Put RT into the RT array
+            RT_LR_hard[p].append(float(output[n][36]))
+    
+    # Remove RT cases 2SD from the mean
+    twostd_val = np.mean(RT_LR_hard[p])+2*(np.std(RT_LR_hard[p]))       
+    RT_LR_hard[p] = [x for x in RT_LR_hard[p] if x<twostd_val]
+
+# Make a boxplot to show RT for all participants
+plt.figure(1)
+plt.boxplot(RT_LR_hard,labels = participant_list,showfliers=False)
+plt.title('LR_hard')
+plt.xlabel('Partipant Code')
+plt.ylabel('Reaction Time (msec)')
+plt.show()
+plt.savefig('LR_hard_boxplot.png')
+
+# Repeat for other conditions...
+
+## LR_easy
+
+RT_LR_easy = [[] for x in xrange(len(participant_list))]
+          
+for p in range(0,len((participant_list)),1):
+    
+    for n in range(1,(len(output)),1):
+        if output[n][1] == participant_list[p] and output[n][32] == '1' and output[n][23] == 'vpt2proc' and output[n][30] == '60':
+            RT_LR_easy[p].append(float(output[n][36]))
+
+    twostd_val = np.mean(RT_LR_easy[p])+2*(np.std(RT_LR_easy[p]))       
+    RT_LR_easy[p] = [x for x in RT_LR_easy[p] if x<twostd_val]
+
+plt.figure(2)
+plt.boxplot(RT_LR_easy,labels = participant_list,showfliers=False)
+plt.title('LR_easy')
+plt.xlabel('Partipant Code')
+plt.ylabel('Reaction Time (msec)')
+plt.show()
+plt.savefig('LR_easy_boxplot.png')
+
+## VO_hard
+
+RT_VO_hard = [[] for x in xrange(len(participant_list))]
+          
+for p in range(0,len((participant_list)),1):
+    
+    for n in range(1,(len(output)),1):
+        if output[n][1] == participant_list[p] and output[n][32] == '1' and output[n][23] == 'vpt1proc' and output[n][30] == '160':
+            RT_VO_hard[p].append(float(output[n][36]))
+
+    twostd_val = np.mean(RT_VO_hard[p])+2*(np.std(RT_VO_hard[p]))       
+    RT_VO_hard[p] = [x for x in RT_VO_hard[p] if x<twostd_val]
+
+plt.figure(3)    
+plt.boxplot(RT_VO_hard,labels = participant_list,showfliers=False)
+plt.title('VO_hard')
+plt.xlabel('Partipant Code')
+plt.ylabel('Reaction Time (msec)')
+plt.show()
+plt.savefig('VO_hard_boxplot.png')
+
+## VO_easy
+
+RT_VO_easy = [[] for x in xrange(len(participant_list))]
+          
+for p in range(0,len((participant_list)),1):
+    
+    for n in range(1,(len(output)),1):
+        if output[n][1] == participant_list[p] and output[n][32] == '1' and output[n][23] == 'vpt1proc' and output[n][30] == '60':
+            RT_VO_easy[p].append(float(output[n][36]))
+
+    twostd_val = np.mean(RT_VO_easy[p])+2*(np.std(RT_VO_easy[p]))       
+    RT_VO_easy[p] = [x for x in RT_VO_easy[p] if x<twostd_val]
+
+plt.figure(4)
+plt.boxplot(RT_VO_easy,labels = participant_list,showfliers=False)
+plt.title('VO_easy')
+plt.xlabel('Partipant Code')
+plt.ylabel('Reaction Time (msec)')
+plt.show()
+plt.savefig('VO_easy_boxplot.png')
+
+## Group Data
+
+data_LR_hard_mean = []
+
+for nnn in range(0,len((participant_list)),1):
+    data_LR_hard_mean.append(np.mean(RT_LR_hard[nnn]))
+
+data_LR_easy_mean = []
+
+for nnn in range(0,len((participant_list)),1):
+    data_LR_easy_mean.append(np.mean(RT_LR_easy[nnn]))
+
+data_VO_hard_mean = []
+
+for nnn in range(0,len((participant_list)),1):
+    data_VO_hard_mean.append(np.mean(RT_VO_hard[nnn]))
+
+data_VO_easy_mean = []
+
+for nnn in range(0,len((participant_list)),1):
+    data_VO_easy_mean.append(np.mean(RT_VO_easy[nnn]))
+    
+data = [data_LR_hard_mean,data_LR_easy_mean, data_VO_hard_mean, data_VO_easy_mean]
+
+## Output to CSV file
+
+data_zip = zip(data[0],data[1],data[2],data[3]) #put into correct format for CSV file
+
+with open("group_means.csv", "wb") as f:
+    writer = csv.writer(f)
+    writer.writerows(data_zip) #write each row to a csv file
+    
+## Bar Graph
+
+labels = ('LR_hard','LR_easy','VO_hard','VO_easy')
+group_means = [np.mean(data[0]),np.mean(data[1]),np.mean(data[2]),np.mean(data[3])]
+y_pos = np.arange(len(group_means))
+plt.figure(5)
+plt.bar(y_pos, group_means, align='center', alpha=0.4)
+plt.xticks(y_pos, labels)
+plt.ylabel('RT (ms)')
+plt.title('Group Mean RTs')
+ 
+plt.show()
+               
+## Beeswarm Plot
+   
+plt.rcParams["font.family"] = "sans-serif"
+plt.rcParams["font.sans-serif"] = "Helvetica"
+       
+from beeswarm import *               
+
+beeswarm([[],data_LR_hard_mean,data_LR_easy_mean,data_VO_hard_mean,data_VO_easy_mean], method="swarm", labels=["","data_LR_hard", "data_LR_easy","data_VO_hard","data_VO_easy"], col=["red","red","red","red","red"])
+plt.ylabel('RT (msec)')
+plt.tick_params(axis='both', which='major', labelsize=15)
+bp = plt.boxplot(data,labels = ['LR_hard','LR_easy','VO_hard','VO_easy'],showfliers=False) 
+
+## change outline color, fill color and linewidth of the boxes
+for box in bp['boxes']:
+    # change outline color
+    box.set( color='#000000', linewidth=1)
+    # change fill color
+    #box.set( facecolor = '#1b9e77' )
+
+## change color and linewidth of the whiskers
+for whisker in bp['whiskers']:
+    whisker.set(color='#000000', linewidth=1)
+
+## change color and linewidth of the caps
+for cap in bp['caps']:
+    cap.set(color='#2d3582', linewidth=1)
+
+## change color and linewidth of the medians
+for median in bp['medians']:
+    median.set(color='#0000FF', linewidth=3)
+
+## change the style of fliers and their fill
+for flier in bp['fliers']:
+    flier.set(marker='o', color='#000000', alpha=0.5)  
+
+plt.savefig('all_conditions_boxplot_with_data.png')
+
+##labels = ['LR_hard','LR_easy','VO_hard','VO_easy']
+#labels = range(4)
+#width = 1/1.
+#
+#plt.bar(labels,data,width,color = 'blue')
+        
+```        
+(Dependencies: [Spyder](https://github.com/spyder-ide), [Beeswarm](https://github.com/mgymrek/pybeeswarm))
 
 
 ![Imgur](http://i.imgur.com/pkHdI1t.png)
@@ -33,11 +242,11 @@ As in Kessler & Rutherford (2010) performance in the LR-hard condition was accom
 
 Each subject's MEG data was saved in 3 separate blocks as follows:
 
->rs_asd_*subjectname*_pers_*blocknumber*
+>rs_asd_subjectname_pers_blocknumber
 
 ## Maxfilter
 
-All MEG data were pre-processed using Maxfilter (temporal signal space separation, .96 correlation), which supresses external sources of noise from outside the head (Taulu & Simola, 2006). To compensate for head movement between runs, data from runs 2 and 3 were transformed to participant’s head position at the start of the first block using the –trans option of Maxfilter.
+All MEG data were pre-processed using Maxfilter (temporal signal space separation, .96 correlation), which supresses external sources of noise from outside the head ([Taulu & Simola, 2006](http://iopscience.iop.org/article/10.1088/0031-9155/51/7/008/meta)). To compensate for head movement between runs, data from runs 2 and 3 were transformed to participant’s head position at the start of the first block using the –trans option of Maxfilter.
 
 This was performed using the following Matlab script.
 
@@ -85,7 +294,7 @@ disp(pers_files)
 
 for i=1
     ddd = (sprintf('maxfilter -f %s -bad 0111 2542 0532 0613 -ctc /neuro/databases/ctc/ct_sparse.fif -cal /neuro/databases/sss/sss_cal.dat -v -force -st 30 -corr 0.96 -headpos -hp headpos_output_%s.log -hpisubt amp | tee output_log_%s.log',[cd '/' pers_files{1}],pers_files{1},pers_files{1}))
-    disp(sprintf('About to process FIRST PERSPECTIVE TAKING DATSET %s using Maxfilter tSSS .9 correlation',pers_files{1}))
+    disp(sprintf('About to process FIRST PERSPECTIVE TAKING DATSET %s using Maxfilter tSSS .96 correlation',pers_files{1}))
     system(ddd)
     clear ddd
     system(ls)
@@ -94,8 +303,8 @@ end
 %% Here I am applying tSSS to data from runs 2 & 3, but also transforming data to the starting position of run 1
 
 for i= [2 3]
-    ddd = (sprintf('maxfilter -f %s -bad 0111 2542 0532 0613 -ctc /neuro/databases/ctc/ct_sparse.fif -cal /neuro/databases/sss/sss_cal.dat -v -force -st 30 -corr 0.9 -trans %s -hpisubt amp',[cd '/' pers_files{i}],[cd '/' pers_files{1}]))
-    disp(sprintf('About to transform PERSPECTIVE TAKING DATSET %s using Maxfilter & tSSS .9 correlation',pers_files{i}))
+    ddd = (sprintf('maxfilter -f %s -bad 0111 2542 0532 0613 -ctc /neuro/databases/ctc/ct_sparse.fif -cal /neuro/databases/sss/sss_cal.dat -v -force -st 30 -corr 0.96 -trans %s -hpisubt amp',[cd '/' pers_files{i}],[cd '/' pers_files{1}]))
+    disp(sprintf('About to transform PERSPECTIVE TAKING DATSET %s using Maxfilter & tSSS .96 correlation',pers_files{i}))
     system(ddd)
     clear ddd
     system(ls)
@@ -137,3 +346,255 @@ end
 (Dependencies: MATLAB, Maxfilter 2.2, [check_movecomp.m](http://imaging.mrc-cbu.cam.ac.uk/meg/maxdiagnost))
 
 ## Preprocessing
+
+All subsequent analysis was performed in Matlab 2014b using the open-source Fieldtrip toolbox (Oostenveld, Fries, Maris, & Schoffelen, 2010), and customised Matlab scripts. 
+
+For preprocessing:
+
+1. Load in data to Fieldtrip
+2.  Apply appropriate filters
+3. Epoch based on specific trigger
+4. Artefact Rejection
+5. Save and repeat for data from runs 1-3
+
+6. 
+
+```matlab
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a Matlab script to analyse Elekta data in Fieldtrip
+% This runs through the common preprocessing, visualisation
+% and artefact rejection steps. Any issues with this email me at
+% seymourr@aston.ac.uk.
+%
+% Data are first saved from each specific run (#1-3) pre-ICA. These data
+% are saved as data_clean_noICA + number of run
+%
+% After this data from all three runs are loaded, concatenated and ICA
+% performed to clean any EOG/ECG remaining. This is saved as the
+% variable data_clean
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Specfiy Subject ID & Condition
+subject = 'XX';
+PS_run = '1'; % 1, 2 or 3
+
+%% Prerequisites
+% Set your current directory
+cd(sprintf('D:\\pilot\\%s\\PS\\',subject)) % only relevant for my computer
+
+% Specify location of the datafile (change to trans in 2 & 3)
+if strcmp(PS_run,'1');
+    rawfile = sprintf('D:\\pilot\\raw_PS_data\\rs_asd_%s_pers%s_quat_tsss.fif',num2str(subject),PS_run);
+
+else
+    rawfile = sprintf('D:\\pilot\\raw_PS_data\\rs_asd_%s_pers%s_trans_tsss.fif',num2str(subject),PS_run);
+end
+
+% Perform ft_qualitycheck
+cfg = [];
+cfg.dataset = rawfile;
+ft_qualitycheck(cfg)
+
+% Creates log file
+diary(sprintf('log_run%s_preICA.out',PS_run));
+
+% Display General Script Info and Current Time & Date
+t = [datetime('now')];
+disp(sprintf('Preprocessing the Perspective Taking Data for Subject %s Run Number %s',subject,PS_run))
+disp(t);
+
+%% Epoching & Filtering
+% Epoch the whole dataset into one continous dataset and apply
+% the appropriate filters
+cfg = [];
+cfg.headerfile = rawfile;
+cfg.datafile = rawfile;
+cfg.channel = 'MEG';
+cfg.trialdef.triallength = Inf;
+cfg.trialdef.ntrials = 1;
+cfg = ft_definetrial(cfg)
+
+cfg.continuous = 'yes';
+cfg.bpfilter = 'yes';
+cfg.bpfreq = [0.5 250];
+cfg.channel = 'MEG';
+cfg.dftfilter = 'yes';
+cfg.dftfreq = [50];
+alldata = ft_preprocessing(cfg);
+
+% Deal with 50Hz line noise
+cfg = [];
+cfg.bsfilter = 'yes';
+cfg.bsfreq = [49.5 50.5];
+alldata = ft_preprocessing(cfg,alldata);
+
+% Deal with 100Hz line noise
+cfg = [];
+cfg.bsfilter = 'yes';
+cfg.bsfreq = [99.5 100.5];
+alldata = ft_preprocessing(cfg,alldata);
+
+% Epoch your filtered data based on a specific trigger(s)
+cfg = [];
+cfg.headerfile = rawfile;
+cfg.datafile = rawfile;
+cfg.channel = 'MEG';
+cfg.trialdef.eventtype = 'Trigger';
+cfg.trialdef.eventvalue = [5:1:12]; % here we use values 5-12
+cfg.trialdef.prestim = 1.0;        % pre-stimulus interval = 1000ms
+cfg.trialdef.poststim = 1.5;        % post-stimulus interval = 1500ms
+cfg = ft_definetrial(cfg);
+data = ft_redefinetrial(cfg,alldata); %redefines the filtered data
+clear alldata
+
+data.rawtrialnumber = [1:1:128];
+
+% Interactive bit of script so that the user can specify trials they wish
+% to remove due to an incorrect responses & resonses greater than 2SD from the mean.
+% Refer to participant EDAT files for this information.
+disp('Enter trial number(s) to be removed in the form [1 2 3]')
+trial2remove = input('Which trials would you like to remove?\n');
+trial_list = [1:1:128];
+trial_list(trial2remove) = [];
+
+cfg = [];
+cfg.trials = trial_list;
+data = ft_redefinetrial(cfg,data);
+clear trial_list trial2remove
+
+% Detrend and demean each trial
+cfg = [];
+cfg.demean = 'yes';
+cfg.detrend = 'yes';
+data = ft_preprocessing(cfg,data)
+
+%% Reject Trials
+% Display visual trial summary to reject deviant trials.
+% You need to load the mag + grad separately due to different scales
+
+cfg = [];
+cfg.method = 'summary';
+cfg.keepchannel = 'yes';
+cfg.channel = 'MEGMAG';
+clean1 = ft_rejectvisual(cfg, data);
+% Now load this
+cfg.channel = 'MEGGRAD';
+clean2 = ft_rejectvisual(cfg, clean1);
+data = clean2; clear clean1 clean2
+close all
+
+%% Display Data
+% Displaying the (raw) preprocessed MEG data
+
+diary off
+cfg = [];
+cfg.channel = 'MEGGRAD';
+cfg.viewmode = 'vertical';
+ft_databrowser(cfg,data)
+cfg.channel = 'MEGMAG';
+ft_databrowser(cfg,data)
+diary on
+
+% Load the summary again so you can manually remove any deviant trials
+cfg = [];
+cfg.method = 'summary';
+cfg.keepchannel = 'yes';
+cfg.channel = 'MEG';
+data = ft_rejectvisual(cfg, data);
+
+% Save data - this could be done more smoothly?
+data_clean_noICA = data
+assignin('base',['data_clean_noICA' (PS_run)],data_clean_noICA)
+disp('Saving data_clean_noICA...');
+save(['data_clean_noICA' (PS_run)],['data_clean_noICA' (PS_run)],'-v7.3')
+clear data_clean_noICA data
+clear((['data_clean_noICA' (PS_run)]))
+close all; diary off
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Stop here and re-run for all runs (1-3)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% !!! ICA !!!
+
+% Creates log file
+diary(sprintf('log_%s_ICA.out',subject));
+
+% Current Time & Date
+t = [datetime('now')];
+disp(sprintf('Performing ICA for Subject %s',subject))
+disp(t);
+
+% Load the pre-ICA data from runs 1-3
+load('data_clean_noICA1'); ICA1 = ones(length(data_clean_noICA1.trial),1);
+load('data_clean_noICA2'); ICA2 = ones(length(data_clean_noICA2.trial),1)*2;
+load('data_clean_noICA3'); ICA3 = ones(length(data_clean_noICA3.trial),1)*3;
+
+cfg = [];
+data = ft_appenddata(cfg,data_clean_noICA1, data_clean_noICA2, data_clean_noICA3);
+% Replace grad, header and label - these dissapear for some reason...
+data.grad = data_clean_noICA1.grad; data.label = data_clean_noICA1.label; 
+data.hdr = data_clean_noICA1.hdr;
+% Add field to keep track of which run each trial came from
+data.run_number = vertcat(ICA1,ICA2,ICA3);
+clear data_clean_noICA1 data_clean_noICA2 data_clean_noICA3 ICA1 ICA2 ICA3
+
+% Downsample
+data_orig = data; %save the original CLEAN data for later use
+cfg = [];
+cfg.resamplefs = 150; %downsample frequency
+cfg.detrend = 'no';
+disp('Downsampling data');
+data = ft_resampledata(cfg, data);
+diary off
+
+% Run ICA
+disp('About to run ICA using the FASTICA method')
+cfg            = [];
+cfg.numcomponent = 64;
+cfg.method     = 'fastica';
+comp           = ft_componentanalysis(cfg, data);
+
+save('comp.mat','comp','-v7.3')
+
+% Display Components - change layout as needed
+cfg = [];
+cfg.viewmode = 'component';
+cfg.layout = 'neuromag306mag.lay';
+ft_databrowser(cfg, comp)
+cfg.layout = 'neuromag306planar.lay';
+ft_databrowser(cfg, comp)
+
+%% Remove components from original data
+%% Decompose the original data as it was prior to downsampling
+diary on;
+disp('Decomposing the original data as it was prior to downsampling...');
+cfg           = [];
+cfg.unmixing  = comp.unmixing;
+cfg.topolabel = comp.topolabel;
+comp_orig     = ft_componentanalysis(cfg, data_orig);
+
+%% the original data can now be reconstructed, excluding specified components
+% This asks the user to specify the components to be removed
+disp('Enter components in the form [1 2 3]')
+comp2remove = input('Which components would you like to remove?\n');
+cfg           = [];
+cfg.component = [comp2remove]; %these are the components to be removed
+data_clean    = ft_rejectcomponent(cfg, comp_orig,data_orig);
+
+%% Save the clean data
+disp('Saving data_clean...');
+save('data_clean','data_clean','-v7.3');
+diary off
+close all
+
+%% Display clean data
+cfg = [];
+cfg.channel = 'MEGGRAD';
+cfg.viewmode = 'vertical';
+ft_databrowser(cfg,data_clean)
+cfg.channel = 'MEGMAG';
+ft_databrowser(cfg,data_clean)
+```
+(Dependencies: MATLAB, [Fieldtrip Toolbox](http://www.fieldtriptoolbox.org/))
