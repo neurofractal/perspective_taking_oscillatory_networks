@@ -25,3 +25,5 @@ theme: minima
 exclude:
   - Gemfile
   - Gemfile.lock
+  disqus:
+    shortname: neurofractal
