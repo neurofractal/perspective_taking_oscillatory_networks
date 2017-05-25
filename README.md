@@ -1,4 +1,5 @@
-## **Theta-Band Oscillations and The Role of The Right Temporo-Parietal Junction in Embodied Perspective-Taking - An MEG Study**
+
+## Theta-Band Oscillations and The Role of The Right Temporo-Parietal Junction in Embodied Perspective-Taking - An MEG Study
 
 ### **(Seymour, Gooding-Williams, Wang, Rippon & Kessler., *in prep*)**
 
