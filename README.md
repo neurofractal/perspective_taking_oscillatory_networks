@@ -6,9 +6,7 @@
 
 ### **A repository of Matlab scripts and tutorials describing the key behavioural and MEG data analysis steps**
 
-&nbsp
-&nbsp
-
+---
 ## Paradigm
 
 ![Imgur](http://i.imgur.com/qC0zeor.jpg)
