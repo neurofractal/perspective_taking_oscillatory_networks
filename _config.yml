@@ -1,9 +1,27 @@
-# Site settings
-title: Perspective Taking MEG Analysis ABC
-tag_text: 
-description: A repository of Matlab scripts and tutorials describing the key MEG data analysis steps in perspective taking task
+title: Theta-Band Oscillations and The Role of The Right Temporo-Parietal Junction in Embodied Perspective-Taking - An MEG Study
+author: Robert Seymour
+email: robbyseymour@gmail.com
+description: A repository of Matlab scripts and tutorials describing the key MEG data analysis steps in perspective taking task > # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+
+twitter_username: robbyseymour
+github_username:  neurofractal
+
+# Minima date format
+# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
+minima:
+  date_format: "%b %-d, %Y"
+
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+#header_pages:
+# - about.html
 
 # Build settings
 markdown: kramdown
-sass:
-  style: compressed
+theme: minima
+exclude:
+  - Gemfile
+  - Gemfile.lock
