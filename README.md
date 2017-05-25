@@ -1,9 +1,11 @@
+# **Theta-Band Oscillations and The Role of The Right Temporo-Parietal Junction in Embodied Perspective-Taking - An MEG Study**
 
+### **(Seymour, Gooding-Williams, Wang, Rippon & Kessler., *in prep*)**
 
-
+### **A repository of Matlab scripts and tutorials describing the key behavioural and MEG data analysis steps**
+<br><br>
 ---
-
-
+<br><br>
 ## Paradigm
 
 ![Imgur](http://i.imgur.com/qC0zeor.jpg)
