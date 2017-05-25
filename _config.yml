@@ -1,7 +1,7 @@
-title: Theta-Band Oscillations and The Role of The Right Temporo-Parietal Junction in Embodied Perspective-Taking - An MEG Study
+title: MEG
 author: Robert Seymour
 email: robbyseymour@gmail.com
-description: A repository of Matlab scripts and tutorials describing the key MEG data analysis steps in perspective taking task > # this means to ignore newlines until "baseurl:"
+description:  > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
