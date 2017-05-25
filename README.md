@@ -1,6 +1,7 @@
+##
 
 # **Perspective Taking MEG Analysis ABC**
-**A repository of Matlab scripts and tutorials describing the key MEG data analysis steps in perspective taking task**
+##**A repository of Matlab scripts and tutorials describing the key MEG data analysis steps in perspective taking task**
 
 **(Seymour, Gooding-Williams, Wang, Rippon & Kessler., *in prep*)**
 
@@ -253,7 +254,7 @@ All MEG data were pre-processed using Maxfilter (temporal signal space separatio
 This was performed using the following Matlab script.
 
 
-```Matlab
+```matlab
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Function to Maxfilter all rs_asd_XXX_persX.fif files in a directory 
 %
@@ -604,3 +605,4 @@ cfg.channel = 'MEGMAG';
 ft_databrowser(cfg,data_clean)
 ```
 (Dependencies: MATLAB, [Fieldtrip Toolbox](http://www.fieldtriptoolbox.org/))
+
