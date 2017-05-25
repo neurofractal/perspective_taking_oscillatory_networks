@@ -4,9 +4,10 @@
 
 ### **(Seymour, Gooding-Williams, Wang, Rippon & Kessler., *in prep*)**
 
-###**A repository of Matlab scripts and tutorials describing the key behavioural and MEG data analysis steps**
+### **A repository of Matlab scripts and tutorials describing the key behavioural and MEG data analysis steps**
 
-
+&nbsp
+&nbsp
 
 ## Paradigm
 
