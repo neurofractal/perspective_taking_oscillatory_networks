@@ -8,11 +8,11 @@ This Github Page hosts a series of Matlab scripts and tutorials describing the k
 
 1. [Paradigm](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/paradigm)
 
- ![Imgur](http://i.imgur.com/qC0zeor.jpg)
+   ![Imgur](http://i.imgur.com/qC0zeor.jpg)
 
 2. [Behavioural Analysis](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/behavioural)
 
- ![Imgur](http://i.imgur.com/basFipk.png)
+   ![Imgur](http://i.imgur.com/basFipk.png)
 
 3. [Description of the MEG Data](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/MEG_data)
 
@@ -20,4 +20,4 @@ This Github Page hosts a series of Matlab scripts and tutorials describing the k
 
 5. [Preprocessing](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/MEG_data)
 
-6. Time-Frequency Analysis(http://robertseymour.me/perspective-taking-MEG-analysis-ABC/tfr_analysis)
+6. [Time-Frequency Analysis](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/tfr_analysis)
