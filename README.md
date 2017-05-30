@@ -20,7 +20,7 @@ ePrime log files were analysed using various scientific pyton packages
 
 Software from [Elekta](http://imaging.mrc-cbu.cam.ac.uk/meg/Maxfilter) for cleaning MEG data
 
-**(5) [Preprocessing](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/MEG_data)**
+**(5) [Preprocessing](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/preprocessing)**
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/).
 
