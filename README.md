@@ -8,7 +8,7 @@ This Github Page hosts a series of Matlab scripts and tutorials describing the k
 
 **(1) [Paradigm](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/paradigm)**
 
-Adapted from [Kessler & Rutherford (2010)](https://books.google.com.au/books?hl=en&lr=&id=u_bSV7fFWQ8C&oi=fnd&pg=PA108&dq=kessler+%26+Rutherford+(2010&ots=NQG4-MWoo1&sig=TGU4LUdvL6jjcOKW_lkTJyoWUH0#v=onepage&q=kessler%20%26%20Rutherford%20(2010&f=false)
+Adapted from [Kessler & Rutherford (2010)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3153818/)
 
 **(2) [Behavioural Analysis](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/behavioural)**
 
