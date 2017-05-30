@@ -12,7 +12,7 @@ Adapted from [Kessler & Rutherford (2010)](https://www.ncbi.nlm.nih.gov/pmc/arti
 
 **(2) [Behavioural Analysis](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/behavioural)**
 
-Performed in Python
+ePrime log files were analysed using various scientific pyton packages
 
 **(3) [Description of the MEG Data](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/MEG_data)**
 
@@ -24,6 +24,6 @@ Software from [Elekta](http://imaging.mrc-cbu.cam.ac.uk/meg/Maxfilter) for clean
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/).
 
-(6) [Time-Frequency Analysis](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/tfr_analysis)
+**(6) [Time-Frequency Analysis](http://robertseymour.me/perspective-taking-MEG-analysis-ABC/tfr_analysis)**
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/). Statistical analysis via non-parametric cluster-based statistics.
