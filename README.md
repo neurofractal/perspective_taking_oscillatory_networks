@@ -1,10 +1,9 @@
-# **Theta-Band Oscillations and The Role of The Right Temporo-Parietal Junction in Embodied Perspective-Taking - An MEG Study**
+# **Oscillatory Networks of Embodied Mental Alignment: a Perspective-Taking MEG study**
 
-## **(Seymour, Gooding-Williams, Wang, Rippon & Kessler., *in prep*)**
+## **(Seymour, Wang, Rippon & Kessler., *in prep*)**
 
 
-
-This Github Page hosts a series of Matlab scripts and tutorials describing the key behavioural and MEG data analysis steps in the above manuscript. 
+This Github Page hosts a series of Matlab scripts describing the key behavioural and MEG data analysis steps in the above manuscript. 
 
 **(1) [Paradigm](http://robertseymour.me/perspective_taking_oscillatory_networks/paradigm)**
 
