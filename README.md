@@ -25,7 +25,7 @@ Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/).
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/). Statistical analysis via non-parametric cluster-based statistics.
 
-**(6) Source-Level Analysis** - coming soon
+**(6) [Source-Level Analysis](http://robertseymour.me/perspective_taking_oscillatory_networks/source_analysis)**
 
 **(7) Virtual Electrode** - coming soon 
 
