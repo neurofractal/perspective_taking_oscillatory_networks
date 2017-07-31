@@ -27,6 +27,8 @@ Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/). Statistical analysis
 
 **(6) [Source-Level Analysis](http://robertseymour.me/perspective_taking_oscillatory_networks/source_analysis)**
 
+Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/), using a DICS beamformer. Statistical analysis via non-parametric cluster-based statistics.
+
 **(7) Virtual Electrode** - coming soon 
 
 **(8) Granger-Causality Analysis (rTPJ, rACC, rPFC)** - coming soon
