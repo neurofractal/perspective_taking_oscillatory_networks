@@ -335,11 +335,9 @@ cfg.design(2,:) = [ones(1,nsubj) ones(1,nsubj)*2];
 cfg.uvar        = 1; % row of design matrix that contains unit variable (in this case: subjects)
 cfg.ivar        = 2; % row of design matrix that contains independent variable (the conditions)
 
-<<<<<<< HEAD
 % Perform statistical analysis separsetly for LR & VO conditions
 [stat_LR] = ft_sourcestatistics(cfg,grandavg_LR_hard{:}, grandavg_LR_easy{:});
 [stat_VO] = ft_sourcestatistics(cfg,grandavg_VO_hard{:}, grandavg_VO_easy{:});
-=======
 [stat] = ft_sourcestatistics(cfg,grandavgA{:}, grandavgB{:});
 
 %save('stat','stat','-v7.3')
