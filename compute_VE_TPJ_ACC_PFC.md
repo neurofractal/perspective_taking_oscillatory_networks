@@ -87,3 +87,5 @@ xlabel('Time (s)'); ylabel('Frequency (Hz)');
 cd('C:\Users\seymourr\Dropbox\RS PhD Documents\Results\Perspective Taking')
 print('rTPJ_VE_TFR_plot','-dpng','-r400')
 ```
+
+(Dependencies: MATLAB, [Fieldtrip Toolbox](http://www.fieldtriptoolbox.org/), get_VE_pers_data.m)
