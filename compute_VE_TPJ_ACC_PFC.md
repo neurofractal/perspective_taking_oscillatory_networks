@@ -1,6 +1,6 @@
 ## Virtual Electrode Computation from rTPJ, rACC and rPFC & Oscillatory Power
 
-This script will compuet the low-frequency oscillatory power from 3 ROIs identified in the whole-brain analysis.
+This script will compute the low-frequency oscillatory power from 3 ROIs identified in the whole-brain analysis.
 
 1. Right ACC (MNI co-ordinates: [12, 36, 28])
 2. Right TPJ (MNI co-ordinates [40 -58 36])
