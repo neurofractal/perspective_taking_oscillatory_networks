@@ -1,6 +1,6 @@
 # **Oscillatory Networks of High-Level Mental Alignment: A Perspective-Taking MEG Study**
 
-## **Seymour, R.A (1,2,3)., Wang, H (1)., Rippon, G (1)., & Kessler, K (1).**
+## **Seymour, R.A <sup>1,2,3</sup>., Wang, H (1)., Rippon, G (1)., & Kessler, K (1).**
 
 *(1) Aston Brain Centre, School of Life and Health Sciences, Aston University, Birmingham, B4 7ET. (2) ARC Centre of Excellence in Cognition and Its Disorders, Macquarie University, Sydney, Australia, 2109. (3) Department of Cognitive Science, Macquarie University, Sydney, Australia, 2109.*
 
