@@ -36,4 +36,6 @@ Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/), using an LCMV beamfo
 
 **(8) Granger-Causality Analysis (rTPJ, rACC, rPFC)** - coming soon
 
-**(9) Imaginary Coherence (whole-brain from rTPJ)** - coming soon
+**(9) Imaginary Coherence (whole-brain from rTPJ) (http://robertseymour.me/perspective_taking_oscillatory_networks/wholebrain_imag_coherence_rTPJ)**
+
+Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/), using an adapive spatial filter and imaginary coherence. Full details within the code.
