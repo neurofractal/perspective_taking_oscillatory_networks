@@ -4,8 +4,6 @@ This script computes imaginary coherence in source-space, using a right TPJ seed
 
 ```matlab
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This scripts performs coherence analysis in the theta band, using PCC
 % as the source localisation technique and imaginary coherence as the
 % connectivity metric.
@@ -334,4 +332,4 @@ ft_sourcewrite(cfg,statint);
 ```
 (Dependencies: MATLAB, [Fieldtrip Toolbox](http://www.fieldtriptoolbox.org/))
 
-Please see http://bugzilla.fieldtriptoolbox.org/show_bug.cgi?id=3029 for discussion about a fix to ft_sourceanalysis for the PCC method.
+Please see [http://bugzilla.fieldtriptoolbox.org/show_bug.cgi?id=3029](http://bugzilla.fieldtriptoolbox.org/show_bug.cgi?id=3029) for discussion about a fix to ft_sourceanalysis for the PCC method.
