@@ -12,6 +12,8 @@ The manuscript will be posted to BioRxiv (link uploaded when available) and subm
 
 ![Imgur](https://i.imgur.com/2PlluEh.png)
 
+### Scripts
+
 This Github Page hosts a series of Matlab scripts describing the key behavioural and MEG data analysis steps. The scripts are not designed to reproduce the analysis in full, but are to be used to supplement the reader's understanding of the analysis steps outlined in the Material and Methods section of the manuscript.
 
 **(1) [Paradigm](http://robertseymour.me/perspective_taking_oscillatory_networks/paradigm)**
