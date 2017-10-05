@@ -2,7 +2,7 @@
 
 ## **Seymour, R.A <sup>1,2,3</sup>., Wang, H <sup>1</sup>., Rippon, G <sup>1</sup>., & Kessler, K <sup>1</sup>.**
 
-*(1) Aston Brain Centre, School of Life and Health Sciences, Aston University, Birmingham, B4 7ET. (2) ARC Centre of Excellence in Cognition and Its Disorders, Macquarie University, Sydney, Australia, 2109. (3) Department of Cognitive Science, Macquarie University, Sydney, Australia, 2109.*
+*<sup>(1)</sup> Aston Brain Centre, School of Life and Health Sciences, Aston University, Birmingham, B4 7ET. sup>(2)</sup> ARC Centre of Excellence in Cognition and Its Disorders, Macquarie University, Sydney, Australia, 2109. sup>(3)</sup> Department of Cognitive Science, Macquarie University, Sydney, Australia, 2109.*
 
 **Abstract**
 
