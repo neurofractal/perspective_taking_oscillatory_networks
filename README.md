@@ -16,36 +16,36 @@ The manuscript will be posted to BioRxiv (link uploaded when available) and subm
 
 This Github Page hosts a series of Matlab scripts describing the key behavioural and MEG data analysis steps. The scripts are not designed to reproduce the analysis in full, but are to be used to supplement the reader's understanding of the analysis steps outlined in the Material and Methods section of the manuscript.
 
-**(1) [Paradigm](http://robertseymour.me/perspective_taking_oscillatory_networks/paradigm)**
+**(1) [Paradigm](https://neurofractal.github.io/perspective_taking_oscillatory_networks/paradigm)**
 
 Adapted from [Kessler & Rutherford (2010)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3153818/)
 
-**(2) [Behavioural Analysis](http://robertseymour.me/perspective_taking_oscillatory_networks/behavioural)**
+**(2) [Behavioural Analysis](https://neurofractal.github.io/perspective_taking_oscillatory_networks/behavioural)**
 
 ePrime log files were analysed using various scientific python packages
 
-**(3) [Maxfilter](http://robertseymour.me/perspective_taking_oscillatory_networks/maxfilter)**
+**(3) [Maxfilter](https://neurofractal.github.io/perspective_taking_oscillatory_networks/maxfilter)**
 
 Software from [Elekta](http://imaging.mrc-cbu.cam.ac.uk/meg/Maxfilter) for cleaning MEG data
 
-**(4) [Preprocessing](http://robertseymour.me/perspective_taking_oscillatory_networks/preprocessing)**
+**(4) [Preprocessing](https://neurofractal.github.io/perspective_taking_oscillatory_networks/preprocessing)**
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/).
 
-**(5) [Time-Frequency Analysis](http://robertseymour.me/perspective_taking_oscillatory_networks/tfr_analysis)**
+**(5) [Time-Frequency Analysis](https://neurofractal.github.io/perspective_taking_oscillatory_networks/tfr_analysis)**
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/). Statistical analysis via non-parametric cluster-based statistics.
 
-**(6) [Source-Level Analysis](http://robertseymour.me/perspective_taking_oscillatory_networks/source_analysis)**
+**(6) [Source-Level Analysis](https://neurofractal.github.io/perspective_taking_oscillatory_networks/source_analysis)**
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/), using a DICS beamformer. Statistical analysis via non-parametric cluster-based statistics.
 
-**(7) [Virtual Electrode & Low Frequency Power Computation](http://robertseymour.me/perspective_taking_oscillatory_networks/compute_VE_TPJ_ACC_PFC)**
+**(7) [Virtual Electrode & Low Frequency Power Computation](https://neurofractal.github.io/perspective_taking_oscillatory_networks/compute_VE_TPJ_ACC_PFC)**
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/), using an LCMV beamformer. Oscillatory power is computed using a Hanning Taper (following sensor-level analysis).
 
 **(8) Granger-Causality Analysis (rTPJ, rACC, rPFC)** - coming soon
 
-**(9) [Imaginary Coherence (whole-brain from rTPJ)](http://robertseymour.me/perspective_taking_oscillatory_networks/wholebrain_imag_coherence_rTPJ)**
+**(9) [Imaginary Coherence (whole-brain from rTPJ)](https://neurofractal.github.io/perspective_taking_oscillatory_networks/wholebrain_imag_coherence_rTPJ)**
 
 Performed in [Fieldtrip](http://www.fieldtriptoolbox.org/), using an adapive spatial filter and imaginary coherence. Full details within the code.
